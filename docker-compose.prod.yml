@@ -1,0 +1,17 @@
+services:
+
+  blog-app:
+    build: ./app
+    container_name: blog-app
+    restart: always
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    restart: always
+    depends_on:
+      - blog-app
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf

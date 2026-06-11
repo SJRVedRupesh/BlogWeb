@@ -1,0 +1,19 @@
+services:
+
+  blog-app:
+    build: ./app
+    container_name: blog-app
+    ports:
+      - "6000:6000"
+
+  jenkins:
+    image: jenkins/jenkins:lts-jdk21
+    container_name: jenkins
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - jenkins-data:/var/jenkins_home
+
+volumes:
+  jenkins-data:
