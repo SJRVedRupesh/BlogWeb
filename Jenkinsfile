@@ -1,25 +1,36 @@
 pipeline {
 
-    agent any
+```
+agent any
 
-    stages {
+stages {
 
-        stage('Clone Repository') {
-            steps {
-                checkout scm
-            }
+    stage('Clone Repository') {
+        steps {
+            checkout scm
         }
+    }
 
-        stage('Build Stage') {
-            steps {
-                echo 'Building application...'
-            }
-        }
-
-        stage('Deploy Application') {
-            steps {
-                echo 'Application deployed successfully.'
+    stage('Install Dependencies') {
+        steps {
+            dir('src') {
+                bat 'npm install'
             }
         }
     }
+
+    stage('Build Stage') {
+        steps {
+            echo 'Application Build Completed'
+        }
+    }
+
+    stage('Deploy Stage') {
+        steps {
+            echo 'Application Deployed Successfully'
+        }
+    }
+}
+```
+
 }
