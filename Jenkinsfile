@@ -12,7 +12,7 @@ stages {
     stage('Install Dependencies') {
         steps {
             dir('src') {
-                bat 'npm install'
+                sh 'npm install'
             }
         }
     }
