@@ -1,4 +1,5 @@
 pipeline {
+    
 agent any
 
 stages {
@@ -19,14 +20,26 @@ stages {
 
     stage('Build Stage') {
         steps {
-            echo 'Application Build Completed'
+            dir('src') {
+                sh 'npm --version'
+                echo 'Application Build Completed Successfully'
+            }
         }
     }
 
     stage('Deploy Stage') {
         steps {
-            echo 'Application Deployed Successfully'
+            echo 'Application Deployment Successful'
         }
+    }
+}
+
+post {
+    success {
+        echo 'Pipeline Executed Successfully'
+    }
+    failure {
+        echo 'Pipeline Failed'
     }
 }
 
